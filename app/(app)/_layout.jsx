@@ -1,15 +1,18 @@
 import { Stack, useRouter } from "expo-router";
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
+import { FontAwesome6 } from "@expo/vector-icons";
+import { useState } from "react";
+
 
 export default function RootLayout() {
-
-	const router = useRouter()
+	const router = useRouter();
+	const [iconColor, setIconColor] = useState("white");
 
 	return (
 		<Stack
 			screenOptions={{
-				headerStyle: { backgroundColor: "#f86d5d" },
-				headerTintColor: "#fff",
+				headerStyle: { backgroundColor: "#6d9ac3" },
+				headerTintColor: "white",
 				headerTitleStyle: styles.header,
 			}}>
 			<Stack.Screen
@@ -18,14 +21,21 @@ export default function RootLayout() {
 					title: "Task List",
 					headerRight: () => (
 						<Pressable
-							onPressOut={() => router.push("/modal")}
+							onPressIn={() => setIconColor("#b2c9de")}
+							onPressOut={() => {
+								setIconColor("white");
+								router.push("/modal");
+							}}
 							style={({ pressed }) => [pressed ? styles.buttonPressed : styles.button]}>
-							<Text style={styles.text}>+</Text>
+							<FontAwesome6 name="plus-square" size={28} color={iconColor} />
 						</Pressable>
 					),
 				}}
 			/>
-			<Stack.Screen name="[id]/index" options={{ title: "", headerBackTitle: "Back", headerBackTitleStyle: styles.header }} />
+			<Stack.Screen
+				name="[id]/index"
+				options={{ title: "", headerBackTitle: "Back", headerBackTitleStyle: styles.header }}
+			/>
 			<Stack.Screen
 				name="modal"
 				options={{
@@ -43,28 +53,14 @@ const styles = StyleSheet.create({
 	button: {
 		alignItems: "center",
 		justifyContent: "center",
-		width: 25,
-		height: 25,
-		borderRadius: 8,
-		borderColor: "white",
-		backgroundColor: "#f05543",
-		borderWidth: 2,
+		width: 38,
+		height: 38,
 	},
 	buttonPressed: {
 		alignItems: "center",
 		justifyContent: "center",
-		width: 25,
-		height: 25,
-		borderRadius: 8,
-		borderColor: "white",
-		borderWidth: 2,
-		backgroundColor: "#f86d5d",
-	},
-	text: {
-		fontSize: 14,
-		fontWeight: "bold",
-		letterSpacing: 0.15,
-		color: "white",
+		width: 38,
+		height: 38,
 	},
 	header: {
 		fontSize: 19,

@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions } fro
 import { Link, router } from "expo-router";
 import { useContext, useState } from "react";
 import { ItemsContext } from "@/context/ItemsContext";
+import { FontAwesome6 } from "@expo/vector-icons";
 
 export default function Modal() {
 	const isPresented = router.canGoBack();
@@ -20,7 +21,7 @@ export default function Modal() {
 			style={{
 				flex: 1,
 				alignItems: "center",
-				backgroundColor: "white",
+				backgroundColor: "#cddbea",
 			}}>
 			<View
 				style={{
@@ -31,21 +32,46 @@ export default function Modal() {
 					paddingVertical: 30,
 					width: width - 25,
 					maxHeight: height - height / 3,
-					backgroundColor: "#f86d5d",
+					backgroundColor: "#6d9ac3",
 					justifyContent: "space-between",
 				}}>
-				<View>
+				<View
+					style={{
+						flex: 1,
+						alignItems: "center",
+						paddingHorizontal: 30,
+					}}>
 					<Text style={styles.header}>Title</Text>
-					<TextInput style={styles.input} placeholder="Title" value={title} onChangeText={setTitle} />
+					<View>
+						<TextInput
+							selectionColor={"white"}
+							placeholderTextColor={"#cddbea"}
+							style={styles.input}
+							placeholder="Title"
+							value={title}
+							onChangeText={setTitle}
+							maxLength={30}
+						/>
+					</View>
 					<Text style={styles.header}>Description</Text>
-					<TextInput style={styles.input} placeholder="Description" value={content} onChangeText={setContent} />
+					<View>
+						<TextInput
+							selectionColor={"white"}
+							placeholderTextColor={"#cddbea"}
+							style={styles.input}
+							placeholder="Description"
+							value={content}
+							onChangeText={setContent}
+							maxLength={400}
+						/>
+					</View>
 				</View>
 
 				<Pressable
 					onPressOut={() => handleAddItem()}
 					style={({ pressed }) => [pressed ? styles.buttonPressed : styles.button]}>
-					<Text style={styles.text}>Add Task</Text>
-					<Text style={styles.text}>{">"}</Text>
+					<Text style={styles.text}>ADD TASK</Text>
+					<FontAwesome6 name="chevron-right" size={16} color="white" />
 				</Pressable>
 			</View>
 
@@ -56,16 +82,18 @@ export default function Modal() {
 const styles = StyleSheet.create({
 	input: {
 		height: 60,
-		minWidth: "80%",
+		minWidth: "100%",
+		maxWidth: "100%",
 		borderRadius: 8,
-		borderColor: "white",
+		borderColor: "#8dadcd",
 		borderWidth: 2,
 		marginBottom: 12.5,
 		paddingHorizontal: 8,
 		fontSize: 16,
 		fontWeight: "bold",
 		color: "white",
-		backgroundColor: "#f97e70",
+		backgroundColor: "#b2c9de",
+		overflow: "hidden",
 	},
 	button: {
 		flex: 1,
@@ -75,11 +103,15 @@ const styles = StyleSheet.create({
 		width: "80%",
 		maxHeight: 60,
 		borderRadius: 8,
-		backgroundColor: "#f05543",
-		paddingHorizontal: 10,
+		backgroundColor: "#396590",
+		paddingHorizontal: 22,
 		marginBottom: 12.5,
 		borderColor: "white",
 		borderWidth: 2,
+		shadowOpacity: 0.15,
+		elevation: 2,
+		shadowRadius: 10,
+		shadowOffset: { width: 1, height: 13 },
 	},
 	buttonPressed: {
 		flex: 1,
@@ -89,12 +121,16 @@ const styles = StyleSheet.create({
 		width: "80%",
 		maxHeight: 60,
 		borderRadius: 8,
-		backgroundColor: "#f86d5d",
-		paddingHorizontal: 10,
+		backgroundColor: "#4b7fac",
+		paddingHorizontal: 22,
 		marginBottom: 12.5,
-		transform: [{ scale: 1.01 }],
+		transform: [{ scale: 0.995 }],
 		borderColor: "white",
 		borderWidth: 2,
+		shadowOpacity: 0.1,
+		elevation: 0,
+		shadowRadius: 8,
+		shadowOffset: { width: 1, height: 13 },
 	},
 	header: {
 		fontSize: 19,
@@ -104,7 +140,7 @@ const styles = StyleSheet.create({
 		letterSpacing: 0.15,
 	},
 	text: {
-		fontSize: 16,
+		fontSize: 18,
 		fontWeight: "bold",
 		color: "white",
 		letterSpacing: 0.15,

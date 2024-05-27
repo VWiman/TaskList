@@ -10,7 +10,8 @@ export const ItemsProvider = ({ children }) => {
 	const [counter, setCounter] = useState(1);
 
 	const addItem = (title, content) => {
-		const item = { id: counter, title: title, content: content, isDone: false };
+		const dateString = new Date().toLocaleString();
+		const item = { id: counter, title: title, content: content, isDone: false, creationDate: dateString };
 		// Add new item to items.
 		setItems((prevItems) => [...prevItems, item]);
 		setCounter((prevCounter) => prevCounter + 1);
@@ -21,8 +22,8 @@ export const ItemsProvider = ({ children }) => {
 		const updatedItems = items.filter((item) => item.id != id);
 		setItems(updatedItems);
 	};
-	const editItem = (id, title, content, isDone) => {
-		const updatedItem = { id: id, title: title, content: content, isDone: isDone };
+	const editItem = (id, title, content, isDone, creationDate) => {
+		const updatedItem = { id: id, title: title, content: content, isDone: isDone, creationDate: creationDate };
 		// Check each item in items. If id is a match, replace with updatedItem, else keep item.
 		const updatedItems = items.map((item) => (item.id === id ? updatedItem : item));
 		setItems(updatedItems);

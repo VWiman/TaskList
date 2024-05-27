@@ -2,6 +2,7 @@ import { ItemsContext } from "@/context/ItemsContext";
 import { useRouter } from "expo-router";
 import { useContext } from "react";
 import { Text, View, FlatList, Pressable, StyleSheet } from "react-native";
+import { FontAwesome6 } from "@expo/vector-icons";
 
 export default function Index() {
 	const { items } = useContext(ItemsContext);
@@ -12,18 +13,18 @@ export default function Index() {
 				flex: 1,
 				justifyContent: "center",
 				alignItems: "center",
-				backgroundColor: "white",
+				backgroundColor: "#cddbea",
 			}}>
 			<FlatList
-				style={{ paddingVertical: 12.5, paddingHorizontal: 12.5 }}
+				style={{ paddingVertical: 24, paddingHorizontal: 24 }}
 				data={items}
 				keyExtractor={(item) => item.id.toString()}
 				renderItem={({ item }) => (
 					<Pressable
-						onPressOut={() => router.push(`/${item.id}`)}
+						onPress={() => router.push(`/${item.id}`)}
 						style={({ pressed }) => [pressed ? styles.buttonPressed : styles.button]}>
 						<Text style={styles.text}>{item.title}</Text>
-						<Text style={styles.text}>{">"}</Text>
+						<FontAwesome6 name="chevron-right" size={16} color="white" />
 					</Pressable>
 				)}
 			/>
@@ -40,9 +41,15 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 60,
 		borderRadius: 8,
-		backgroundColor: "#f05543",
-		paddingHorizontal: 10,
+		backgroundColor: "#396590",
+		paddingHorizontal: 22,
 		marginBottom: 12.5,
+		borderColor: "white",
+		borderWidth: 2,
+		shadowOpacity: 0.15,
+		elevation: 2,
+		shadowRadius: 10,
+		shadowOffset: { width: 1, height: 13 },
 	},
 	buttonPressed: {
 		flex: 1,
@@ -52,10 +59,16 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 60,
 		borderRadius: 8,
-		backgroundColor: "#f86d5d",
-		paddingHorizontal: 10,
+		backgroundColor: "#4b7fac",
+		paddingHorizontal: 22,
 		marginBottom: 12.5,
-		transform: [{ scale: 1.01 }],
+		transform: [{ scale: 0.995 }],
+		borderColor: "white",
+		borderWidth: 2,
+		shadowOpacity: 0.1,
+		elevation: 0,
+		shadowRadius: 8,
+		shadowOffset: { width: 1, height: 13 },
 	},
 	text: {
 		fontSize: 16,
