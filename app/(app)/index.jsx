@@ -23,7 +23,7 @@ export default function Index() {
 					<Pressable
 						onPress={() => router.push(`/${item.id}`)}
 						style={({ pressed }) => [pressed ? styles.buttonPressed : styles.button]}>
-						<Text style={styles.text}>{item.title}</Text>
+						{item.isDone ? <Text style={styles.textDone}> {item.title}</Text>  : <Text style={styles.text}> {item.title}</Text>}
 						<FontAwesome6 name="chevron-right" size={16} color="white" />
 					</Pressable>
 				)}
@@ -75,5 +75,11 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		letterSpacing: 0.15,
 		color: "white",
+	},
+	textDone: {
+		fontSize: 16,
+		fontWeight: "bold",
+		letterSpacing: 0.15,
+		color: "rgba(0,0,0,0.3)",
 	},
 });

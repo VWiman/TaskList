@@ -45,7 +45,7 @@ export default function Modal() {
 					<View>
 						<TextInput
 							selectionColor={"white"}
-							placeholderTextColor={"#cddbea"}
+							placeholderTextColor={"rgba(225,225,225,0.3)"}
 							style={styles.input}
 							placeholder="Title"
 							value={title}
@@ -57,7 +57,7 @@ export default function Modal() {
 					<View>
 						<TextInput
 							selectionColor={"white"}
-							placeholderTextColor={"#cddbea"}
+							placeholderTextColor={"rgba(225,225,225,0.3)"}
 							style={styles.input}
 							placeholder="Description"
 							value={content}
@@ -85,14 +85,14 @@ const styles = StyleSheet.create({
 		minWidth: "100%",
 		maxWidth: "100%",
 		borderRadius: 8,
-		borderColor: "#8dadcd",
+		borderColor: "rgba(255,255,255,0.4)",
 		borderWidth: 2,
 		marginBottom: 12.5,
 		paddingHorizontal: 8,
 		fontSize: 16,
 		fontWeight: "bold",
 		color: "white",
-		backgroundColor: "#b2c9de",
+		backgroundColor: "rgba(0,0,0,0.1)",
 		overflow: "hidden",
 	},
 	button: {
